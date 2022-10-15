@@ -2,6 +2,7 @@
   "extends": [
     "next/core-web-vitals",
     "airbnb",
+    "airbnb-typescript",
     "airbnb/hooks",
     "plugin:react/jsx-runtime",
     "prettier"
@@ -9,7 +10,8 @@
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
-    }
+    },
+    "project": "./tsconfig.eslint.json"
   },
   "rules": {
     "react/jsx-filename-extension": [
@@ -18,6 +20,13 @@
         "extensions": [
           ".tsx"
         ]
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "no-param-reassign": [
+      "error",
+      {
+        "props": false
       }
     ]
   }
