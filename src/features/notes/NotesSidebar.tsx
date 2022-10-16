@@ -12,19 +12,28 @@ export function NotesSidebar() {
     if (isSuccess) {
       return notes.map((note: Note) => <div key={note.id}>{note.title}</div>)
     }
-    return null
+    return (
+      <ul>
+        <li>Note 1</li>
+        <li>Note 2</li>
+      </ul>
+    )
   }
 
   return (
-    <div className={`fixed h-full ${open ? 'w-24' : 'w-5'}`}>
+    <div
+      className={`flex flex-col items-center p-2 bg-gray-900 text-zinc-100 ${
+        open ? 'w-24' : 'w-6'
+      }`}
+    >
       <button
         type="button"
-        className="absolute right-1"
+        className={`${open && 'self-end'}`}
         onClick={() => setOpen((prev) => !prev)}
       >
         {open ? 'X' : '>'}
       </button>
-      {open && getContent()}
+      {open && <div>{getContent()}</div>}
     </div>
   )
 }

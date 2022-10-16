@@ -32,16 +32,16 @@ export function Note() {
   }
 
   return (
-    <div className="flex flex-col gap-2 flex-grow">
+    <div className="flex-grow flex flex-col gap-2">
       <input
         type="text"
-        className="border border-black"
+        className="p-2 border border-black"
         value={title}
         onChange={handleTitleChange}
       />
       <textarea
         id="note"
-        className="resize-none border border-black flex-grow"
+        className="flex-grow p-2 border border-black resize-none"
         value={text}
         onChange={handleTextChange}
       />
