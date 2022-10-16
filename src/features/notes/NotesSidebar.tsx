@@ -16,7 +16,7 @@ export function NotesSidebar() {
   }
 
   return (
-    <div className={`fixed h-full ${open ? 'w-20' : 'w-5'}`}>
+    <div className={`fixed h-full ${open ? 'w-24' : 'w-5'}`}>
       <button
         type="button"
         className="absolute right-1"

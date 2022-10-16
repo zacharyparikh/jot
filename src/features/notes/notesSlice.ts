@@ -12,6 +12,8 @@ interface SliceState {
   notes: { [index: number]: Note }
 }
 
+let id = 0
+
 const initialState: SliceState = {
   current: undefined,
   notes: {},
@@ -24,17 +26,33 @@ export const notesSlice = createSlice({
     switchNote(state, action: PayloadAction<number>) {
       state.current = action.payload
     },
-    addNote(state, action: PayloadAction<Note>) {
-      const { id, title, text } = action.payload
+    addNote(state, action: PayloadAction<{ title: string; text: string }>) {
+      const { title, text } = action.payload
       state.notes[id] = { id, title, text }
+      state.current = id
+      id += 1
+    },
+    deleteNote(state, action: PayloadAction<number>) {
+      delete state.notes[action.payload]
+    },
+    setNoteTitle(state, action: PayloadAction<string>) {
+      if (state.current === undefined) {
+        return
+      }
+      state.notes[state.current].title = action.payload
+    },
+    setNoteText(state, action: PayloadAction<string>) {
+      if (state.current === undefined) {
+        return
+      }
+      state.notes[state.current].text = action.payload
     },
   },
 })
 
 const { name, actions } = notesSlice
 export const selectCurrentNote = (state: RootState) => {
-  const slice = state[name]
-  const id = slice.current
-  return id !== undefined ? slice.notes[id] : null
+  const { current, notes } = state[name]
+  return current !== undefined ? notes[current] : null
 }
-export const { switchNote } = actions
+export const { switchNote, addNote, setNoteTitle, setNoteText } = actions
