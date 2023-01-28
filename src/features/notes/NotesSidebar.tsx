@@ -1,23 +1,47 @@
+import { useGetNotesQuery } from 'features/api/apiSlice'
+import { appConsole } from 'lib/appConsole'
+import { useAppDispatch } from 'lib/hooks'
+import { onAcceptKeys } from 'lib/onAcceptKeys'
 import { useState } from 'react'
-import { useGetNotesQuery } from '../api/apiSlice'
-import { Note } from './notesSlice'
+import { Note, switchNote } from './notesSlice'
 
 export function NotesSidebar() {
+  const { data: notes, isError, error } = useGetNotesQuery()
   const [open, setOpen] = useState(true)
-  const { isLoading, isSuccess, data: notes } = useGetNotesQuery()
-  const getContent = () => {
-    if (isLoading) {
-      return <div>Loading...</div>
+  const dispatch = useAppDispatch()
+  const handleSwitchNote = (id: number) => {
+    dispatch(switchNote(id))
+  }
+
+  const getContent = function getNotesSidebarContent() {
+    if (isError) {
+      appConsole.error(error)
+      return <div>No notes found</div>
     }
-    if (isSuccess) {
-      return notes.map((note: Note) => <div key={note.id}>{note.title}</div>)
+
+    if (notes) {
+      return (
+        <ul>
+          {Object.values(notes).map((note: Note) => (
+            <li key={note.id}>
+              <button
+                type="button"
+                onClick={() => {
+                  handleSwitchNote(note.id)
+                }}
+                onKeyDown={onAcceptKeys(() => {
+                  handleSwitchNote(note.id)
+                })}
+              >
+                {note.title}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )
     }
-    return (
-      <ul>
-        <li>Note 1</li>
-        <li>Note 2</li>
-      </ul>
-    )
+
+    return <div>Loading...</div>
   }
 
   return (
@@ -33,7 +57,7 @@ export function NotesSidebar() {
       >
         {open ? 'X' : '>'}
       </button>
-      {open && <div>{getContent()}</div>}
+      {open && getContent()}
     </div>
   )
 }

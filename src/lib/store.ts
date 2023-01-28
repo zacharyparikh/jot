@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { useDispatch } from 'react-redux'
 import { apiSlice } from '../features/api/apiSlice'
 import { notesSlice } from '../features/notes/notesSlice'
 
@@ -14,4 +13,3 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
-export const useAppDispatch: () => AppDispatch = useDispatch
