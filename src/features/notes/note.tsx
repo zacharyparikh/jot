@@ -6,7 +6,7 @@ import {
   selectCurrentNote,
   setNoteText,
   setNoteTitle,
-} from './notesSlice'
+} from './notes-slice'
 
 export function Note() {
   const note = useSelector(selectCurrentNote)

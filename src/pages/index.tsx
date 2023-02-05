@@ -1,5 +1,5 @@
 import { Note } from 'features/notes/Note'
-import { NotesSidebar } from 'features/notes/NotesSidebar'
+import { NotesSidebar } from 'features/notes/notes-sidebar'
 
 export default function Home() {
   return (

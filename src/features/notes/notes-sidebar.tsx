@@ -1,9 +1,9 @@
-import { useGetNotesQuery } from 'features/api/apiSlice'
-import { appConsole } from 'lib/appConsole'
+import { useGetNotesQuery } from 'features/api/api-slice'
+import { appConsole } from 'lib/app-console'
 import { useAppDispatch } from 'lib/hooks'
-import { onAcceptKeys } from 'lib/onAcceptKeys'
+import { onAcceptKeys } from 'lib/on-accept-keys'
 import { useState } from 'react'
-import { Note, switchNote } from './notesSlice'
+import { Note, switchNote } from './notes-slice'
 
 export function NotesSidebar() {
   const { data: notes, isError, error } = useGetNotesQuery()

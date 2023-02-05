@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { Note } from 'features/notes/notesSlice'
+import type { Note } from 'features/notes/notes-slice'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 async function handleGet(req: NextApiRequest, res: NextApiResponse<Note>) {

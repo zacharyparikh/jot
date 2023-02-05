@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { Note } from 'features/notes/notesSlice'
+import type { Note } from 'features/notes/notes-slice'
 import { readdir, readFile } from 'fs/promises'
-import { getErrorMessage } from 'lib/getErrorMessage'
+import { getErrorMessage } from 'lib/get-error-message'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 async function handleGet(

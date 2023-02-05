@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import type { Note } from '../notes/notesSlice'
+import type { Note } from '../notes/notes-slice'
 
 export const apiSlice = createApi({
   reducerPath: 'api',
