@@ -1,7 +1,7 @@
 import { Note } from 'features/notes/note'
 import { NotesSidebar } from 'features/notes/notes-sidebar'
 
-export default function Home() {
+export default function Home(): JSX.Element {
   return (
     <div className="bg-zinc-100 h-screen grid grid-cols-12">
       <NotesSidebar />

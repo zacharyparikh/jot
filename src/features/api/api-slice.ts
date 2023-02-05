@@ -6,7 +6,7 @@ export const apiSlice = createApi({
   tagTypes: ['Note'],
   baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
   endpoints: (builder) => ({
-    getNotes: builder.query<{ [index: number]: Note }, void>({
+    getNotes: builder.query<Record<number, Note>, void>({
       query: () => '/notes',
       providesTags: (result = []) => [
         { type: 'Note', id: 'LIST' },
@@ -37,7 +37,7 @@ export const apiSlice = createApi({
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getNotes', undefined, (posts) => {
             const post = posts[id]
-            if (post) {
+            if (post !== undefined) {
               post.title = title
               post.text = text
             }
