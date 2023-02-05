@@ -1,4 +1,4 @@
-import { Note } from 'features/notes/Note'
+import { Note } from 'features/notes/note'
 import { NotesSidebar } from 'features/notes/notes-sidebar'
 
 export default function Home() {
