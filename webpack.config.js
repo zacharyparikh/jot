@@ -6,10 +6,11 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   mode: isDevelopment ? 'development' : 'production',
-  entry: './src/index.js',
-  devtool: 'inline-source-map',
+  entry: './src/index.tsx',
+  devtool: isDevelopment ? 'inline-source-map' : 'source-map',
   devServer: {
     static: './dist',
+    hot: true,
   },
   plugins: [
     new HtmlWebpackPlugin({ title: 'Jot', template: 'index.html' }),
@@ -42,5 +43,8 @@ module.exports = {
         ],
       },
     ],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
   },
 };
