@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://orbital-outpost-395816.uk.r.appspot.com/:path*"
+    }
+  ]
+}

@@ -15,9 +15,7 @@ const config: webpack.Configuration = {
     hot: true,
     proxy: {
       '/api': {
-        target: isDevelopment
-          ? 'http://localhost:8080'
-          : 'https://orbital-outpost-395816.uk.r.appspot.com',
+        target: 'http://localhost:8080',
         pathRewrite: { '^/api': '' },
       },
     },
