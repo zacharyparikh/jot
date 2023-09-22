@@ -1,12 +1,19 @@
 {
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "outDir": "./dist/",
     "sourceMap": true,
     "noImplicitAny": true,
-    "module": "es6",
+    "module": "nodenext",
     "target": "es5",
     "jsx": "react-jsx",
-    "allowJs": true,
-    "moduleResolution": "node"
+    "allowJs": true
+  },
+  "include": ["src/**/*", ".eslintrc.cjs", "webpack.config.ts"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
   }
 }

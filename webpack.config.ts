@@ -1,16 +1,26 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+import path from 'path';
+import type webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import 'webpack-dev-server';
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
-module.exports = {
+const config: webpack.Configuration = {
   mode: isDevelopment ? 'development' : 'production',
   entry: './src/index.tsx',
   devtool: isDevelopment ? 'inline-source-map' : 'source-map',
   devServer: {
     static: './dist',
     hot: true,
+    proxy: {
+      '/api': {
+        target: isDevelopment
+          ? 'http://localhost:8080'
+          : 'https://orbital-outpost-395816.uk.r.appspot.com',
+        pathRewrite: { '^/api': '' },
+      },
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({ title: 'Jot', template: 'index.html' }),
@@ -37,7 +47,9 @@ module.exports = {
           {
             loader: require.resolve('babel-loader'),
             options: {
-              plugins: [isDevelopment && require.resolve('react-refresh/babel')].filter(Boolean),
+              plugins: [
+                isDevelopment && require.resolve('react-refresh/babel'),
+              ].filter(Boolean),
             },
           },
         ],
@@ -48,3 +60,5 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
   },
 };
+
+export default config;
