@@ -1,11 +1,8 @@
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
-import { PostsList } from './features/posts/PostsList';
 import { Navbar } from './app/Navbar';
-import { AddPostForm } from './features/posts/AddPostForm';
-import { SinglePostPage } from './features/posts/SinglePostPage';
-import { EditPostForm } from './features/posts/EditPostForm';
 import { AddNoteForm } from './features/notes/AddNoteForm';
 import { NotesList } from './features/notes/NotesList';
+import { Note } from './features/notes/Note';
 
 const router = createBrowserRouter([
   {
@@ -26,21 +23,8 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/posts',
-        element: (
-          <>
-            <AddPostForm />
-            <PostsList />,
-          </>
-        ),
-      },
-      {
-        path: '/posts/:postId',
-        element: <SinglePostPage />,
-      },
-      {
-        path: '/editPost/:postId',
-        element: <EditPostForm />,
+        path: '/notes/:noteId',
+        element: <Note />,
       },
     ],
   },
