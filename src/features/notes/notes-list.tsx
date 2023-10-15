@@ -1,27 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../app/hooks';
-import { useGetGreetingQuery } from '../api/apiSlice';
-import { Spinner } from '../../components/Spinner';
 
 export const NotesList = () => {
   const notes = useAppSelector((state) => state.notes);
-  const {
-    data: greeting,
-    isLoading,
-    isSuccess,
-    isError,
-    error,
-  } = useGetGreetingQuery();
-
-  let content;
-
-  if (isLoading) {
-    content = <Spinner text="Loading..." />;
-  } else if (isSuccess) {
-    content = greeting.content;
-  } else if (isError) {
-    content = <div>{error.toString()}</div>;
-  }
 
   const renderedNotes = notes.map((note) => (
     <article className="post-excerpt" key={note.id}>
@@ -36,7 +17,6 @@ export const NotesList = () => {
   return (
     <section className="notes-list">
       <h2>Notes</h2>
-      {content}
       {renderedNotes}
     </section>
   );

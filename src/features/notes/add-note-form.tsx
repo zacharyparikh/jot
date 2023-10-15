@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAppDispatch } from '../../app/hooks';
-import { noteAdded } from './notesSlice';
+import { noteAdded } from './notes-slice';
 
 export const AddNoteForm = () => {
   const [title, setTitle] = useState('');

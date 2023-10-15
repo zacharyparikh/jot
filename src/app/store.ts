@@ -1,12 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import postsReducer from '../features/posts/postsSlice';
-import notesReducer from '../features/notes/notesSlice';
-import { apiSlice } from '../features/api/apiSlice';
+import { apiSlice } from '../features/api/api-slice';
+import notesReducer from '../features/notes/notes-slice';
 
 export const store = configureStore({
   reducer: {
     notes: notesReducer,
-    posts: postsReducer,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
